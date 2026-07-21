@@ -1,0 +1,78 @@
+((*- extends 'base.tex.j2' -*))
+
+((* block docclass *))
+\documentclass[11pt,russian,fleqn]{article}
+((* endblock docclass *))
+
+((* block packages *))
+    ((( super() )))
+    \usepackage{fontspec}
+    \usepackage{unicode-math}
+    \usepackage{polyglossia}
+    \setmainlanguage{russian}
+    \setotherlanguage{english}
+
+    % Шрифты для Ubuntu
+    \setmainfont{Liberation Serif}
+    \newfontfamily{\cyrillicfont}{Liberation Serif}
+    \setmonofont{Liberation Mono}
+    \newfontfamily{\cyrillicfonttt}{Liberation Mono}
+    \setsansfont{Liberation Sans}
+    \newfontfamily{\cyrillicfontsf}{Liberation Sans}
+
+    % Математика без конфликта \eth
+    \usepackage{amsmath}
+    \setmathfont{Latin Modern Math}
+
+    \usepackage[table]{xcolor}
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{indentfirst}
+    \setlength{\parindent}{1.25cm}
+    \usepackage{graphicx}
+    \usepackage{caption}
+    \usepackage{float}
+    \floatplacement{figure}{H}
+    \usepackage{geometry}
+    \geometry{tmargin=2cm,bmargin=2cm,lmargin=3cm,rmargin=1.5cm}
+    \usepackage{fancyvrb}
+    \usepackage[Export]{adjustbox}
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+    
+    \usepackage{hyperref}
+    \hypersetup{colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue}
+
+    \usepackage{longtable, booktabs, array, calc, setspace}
+    \onehalfspacing
+
+    % Исправление нумерации
+    \renewcommand{\thesection}{\arabic{section}}
+    \renewcommand{\thesubsection}{\arabic{subsection}}
+    \renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+
+    % Фикс для вывода кода
+    \fvset{commandchars=\\\{\}, fontsize=\small, showspaces=false}
+    \catcode`\^^M=10
+
+    % Математическая кириллица
+    \DeclareSymbolFont{cyrletters}{\encodingdefault}{\familydefault}{m}{it}
+    \newcommand{\makecyrmathletter}[1]{%
+        \begingroup\lccode`a=#1\lowercase{\endgroup
+            \Umathcode`a}="0 \csname symcyrletters\endcsname\space #1
+    }
+    \count255="409
+    \loop\ifnum\count255<"44F
+    \advance\count255 by 1
+    \makecyrmathletter{\count255}
+    \repeat
+((* endblock packages *))
+
+((* block title *))((* endblock title *))
+((* block author *))((* endblock author *))
+((* block date *))((* endblock date *))
+
+((* block predoc *))
+    \input{titlepage}
+    \newpage
+    \tableofcontents
+    \newpage
+((* endblock predoc *))
