@@ -51,7 +51,6 @@
 
     % Фикс для вывода кода
     \fvset{commandchars=\\\{\}, fontsize=\small, showspaces=false}
-    \catcode`\^^M=10
 
     % Математическая кириллица
     \DeclareSymbolFont{cyrletters}{\encodingdefault}{\familydefault}{m}{it}
